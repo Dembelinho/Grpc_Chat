@@ -71,37 +71,19 @@ public class GrpcClient {
 
                     @Override
                     public void onCompleted() {
-
+                        System.out.println(" Compleeeeeeeeted....");
                     }
                 });
-                //System.in.read();
                 break;
             }
+            Chat.CurrencyRequest request = Chat.CurrencyRequest.newBuilder()
+                    .setCurrencyFrom(username)
+                    .setCurrencyTo(messageTo)
+                    .setRequest(message)
+                    .build();
+            performStream.onNext(request);
         }
-        Timer timer=new Timer();
-        timer.schedule(new TimerTask() {
-            int cpt;
-            @Override
-            public void run() {
-                System.out.println("Entrez votre tentative");
-                Scanner scanner=new Scanner(System.in);
-                String request = scanner.nextLine();
-                Chat.CurrencyRequest currencyRequest= Chat.CurrencyRequest.newBuilder()
-                        .setCurrencyTo("Server")
-                        .setCurrencyFrom("Client")
-                        .setRequest(request)
-                        .build();
-                performStream.onNext(currencyRequest);
-                //System.out.println("==============> counter = "+ cpt);
-                ++cpt;
-                if (cpt==20){
-                    performStream.onCompleted();
-                    timer.cancel();
-                }
-            }
-        }, 1000, 1000);
-
-        System.out.println("0.....0.00.0000.......");
-        System.in.read();
+        //System.out.println("0.....0.00.0000.......");
+        //System.in.read();
     }
 }
