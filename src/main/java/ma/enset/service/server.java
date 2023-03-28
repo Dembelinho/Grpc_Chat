@@ -11,7 +11,8 @@ public class server {
                 .addService(new ChatGrpcService())
                 .build();
         server.start();
-        server.awaitTermination();
         System.out.println("Server Starteeeed....");
+        server.awaitTermination();
+
     }
 }

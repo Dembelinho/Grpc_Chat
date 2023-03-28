@@ -33,7 +33,7 @@ public class GrpcClient {
                         String messageFrom = currencyRequest.getCurrencyFrom();
                         String request = currencyRequest.getRequest();
 
-                        System.out.println(messageFrom+" : "+request);
+                        System.out.println(request+" << from : "+messageFrom);
                     }
 
                     @Override
@@ -43,15 +43,22 @@ public class GrpcClient {
 
                     @Override
                     public void onCompleted() {
-                        System.out.println(" Compleeeeeeeeted....");
+
                     }
         });
 
         while (true) {
             System.out.println("*--*----------*--*----------*--*-----------*--*");
             System.out.print("Message To : ");
-            String messageTo = scanner.nextLine();
-            scanner.next();
+            String messageTo = scanner.next();
+            scanner.nextLine();
+
+            try {
+                Thread.sleep(1000);
+            }catch (InterruptedException exception){
+                exception.getMessage();
+            }
+
             System.out.print("Message : ");
             message = scanner.nextLine();
             System.out.println(message);
@@ -74,7 +81,7 @@ public class GrpcClient {
                         System.out.println(" Compleeeeeeeeted....");
                     }
                 });
-                break;
+               // break;
             }
             Chat.CurrencyRequest request = Chat.CurrencyRequest.newBuilder()
                     .setCurrencyFrom(username)
