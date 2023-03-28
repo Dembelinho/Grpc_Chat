@@ -1,0 +1,15 @@
+syntax="proto3";
+option java_package ="ma.enset.stubs";
+service ChatService{
+  rpc disconnectRequest(connect) returns(CurrencyRequest);
+  rpc fullCurrencyStream(stream CurrencyRequest) returns(stream CurrencyRequest); //bidirectional streaming model
+}
+message CurrencyRequest{
+  string currencyFrom=1;
+  string currencyTo=2;
+  string request=3;
+}
+
+message connect{
+  string username=1;
+}
