@@ -22,7 +22,7 @@ public class GrpcClient {
         String username;
         String message;
         Scanner scanner=new Scanner(System.in);
-        System.out.print("Enter Ur Username : ");
+        System.out.print("Enter ur name : ");
         username=scanner.next();
         System.out.println(username+ " connected ...");
         System.out.println("To disconnect tape (exit) ...");
@@ -32,8 +32,9 @@ public class GrpcClient {
                     public void onNext(Chat.CurrencyRequest currencyRequest) {
                         String messageFrom = currencyRequest.getCurrencyFrom();
                         String request = currencyRequest.getRequest();
-
-                        System.out.println(request+" << from : "+messageFrom);
+                        System.out.println();
+                        System.out.println("Message >> "+request);
+                        System.out.println("from : "+messageFrom);
                     }
 
                     @Override
@@ -90,7 +91,6 @@ public class GrpcClient {
                     .build();
             performStream.onNext(request);
         }
-        //System.out.println("0.....0.00.0000.......");
         //System.in.read();
     }
 }
